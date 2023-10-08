@@ -1,0 +1,16 @@
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\obj\Debug\net6.0-windows\homework1_VB.Form1.resources
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\obj\Debug\net6.0-windows\homework1_VB.vbproj.GenerateResource.cache
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\obj\Debug\net6.0-windows\homework1_VB.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\obj\Debug\net6.0-windows\homework1_VB.AssemblyInfoInputs.cache
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\obj\Debug\net6.0-windows\homework1_VB.AssemblyInfo.vb
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\obj\Debug\net6.0-windows\homework1_VB.vbproj.CoreCompileInputs.cache
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\bin\Debug\net6.0-windows\homework1_VB.exe
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\bin\Debug\net6.0-windows\homework1_VB.deps.json
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\bin\Debug\net6.0-windows\homework1_VB.runtimeconfig.json
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\bin\Debug\net6.0-windows\homework1_VB.dll
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\bin\Debug\net6.0-windows\homework1_VB.pdb
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\obj\Debug\net6.0-windows\homework1_VB.dll
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\obj\Debug\net6.0-windows\refint\homework1_VB.dll
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\obj\Debug\net6.0-windows\homework1_VB.pdb
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\obj\Debug\net6.0-windows\homework1_VB.genruntimeconfig.cache
+C:\Users\Simone\source\repos\homework1_VB\homework1_VB\obj\Debug\net6.0-windows\ref\homework1_VB.dll
