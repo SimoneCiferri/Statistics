@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read and Analyze CSV</title>
+</head>
+
+<body>
+    <input type="file" accept=".csv" id="fileInput" />
+
+    <script>
+        // Add event listener to the file input element
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect, false);
+
+        // Function to handle file selection
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            // Event listener when file is loaded
+            reader.onload = function (e) {
+                const content = e.target.result;
+                const lines = content.split('\n');
+                const columnStringValues1 = [];
+                const columnStringValues2 = [];
+                const columnContinuousValues = [];
+
+                // Regular expression to match CSV values
+                const regex = /(".*?"|[^",]+)(?=\s*,|\s*$)/g;
+
+                // Process each line of the CSV
+                lines.forEach(function (line) {
+                    const values = line.match(regex);
+                    if (values && values.length >= 7) {
+                        const column1Value = values[1].replace(/^"(.+(?="$))"$/, '$1');
+                        const column2Value = values[4].replace(/^"(.+(?="$))"$/, '$1');
+                        const continuousValue = parseFloat(values[5].replace(/^"(.+(?="$))"$/, '$1'));
+
+                        // Check if continuous value is numeric before parsing
+                        if (!isNaN(continuousValue)) {
+                            columnStringValues1.push(column1Value);
+                            columnStringValues2.push(column2Value);
+                            columnContinuousValues.push(continuousValue);
+                        }
+                    }
+                });
+
+                // Remove header row
+                columnStringValues1.shift();
+                columnStringValues2.shift();
+                columnContinuousValues.shift();
+
+                // Calculate distributions for column 1
+                const columnDistribution1 = calculateDistribution(columnStringValues1);
+                console.log("Column 1 Distribution: ", columnDistribution1);
+
+                // Calculate distributions for column 2
+                const columnDistribution2 = calculateDistribution(columnStringValues2);
+                console.log("Column 2 Distribution: ", columnDistribution2);
+
+                // Calculate continuous distribution for column 3 with k = 5 (as an example)
+                const k = 5;
+                const continuousDistribution = calculateContinuousDistribution(columnContinuousValues, k);
+                console.log("Continuous Distribution: ", continuousDistribution);
+				
+				// Calculate multivariate distribution for specified columns
+                const columnsToConsider = [4, 16]; // Specify columns to consider (indexes are 0-based)
+                const multivariateDistribution = calculateMultivariateDistribution([columnStringValues1, columnStringValues2]);
+				console.log("Multivariate Distribution: ", multivariateDistribution);
+
+            };
+
+            // Read the file as text
+            reader.readAsText(file);
+        }
+
+        // Function to calculate distribution for a given column
+        function calculateDistribution(columnValues) {
+            const absoluteDistribution = {};
+            columnValues.forEach(function (value) {
+                absoluteDistribution[value] = (absoluteDistribution[value] || 0) + 1;
+            });
+
+            const totalCategories = columnValues.length;
+            const relativeDistribution = {};
+            const percentageDistribution = {};
+
+            for (const category in absoluteDistribution) {
+                const absoluteFrequency = absoluteDistribution[category];
+                const relativeFrequency = absoluteFrequency / totalCategories;
+                const percentageFrequency = relativeFrequency * 100;
+
+                relativeDistribution[category] = relativeFrequency.toFixed(4);
+                percentageDistribution[category] = percentageFrequency.toFixed(2) + '%';
+            }
+
+            return {
+                absolute: absoluteDistribution,
+                relative: relativeDistribution,
+                percentage: percentageDistribution
+            };
+        }
+
+        // Function to calculate continuous distribution for a given column
+        function calculateContinuousDistribution(columnValues, k) {
+            const validValues = columnValues.filter(value => !isNaN(value));
+
+            const minValue = Math.min(...validValues);
+            const maxValue = Math.max(...validValues);
+            const intervalLength = (maxValue - minValue) / k;
+
+            const intervals = Array.from({ length: k }, (_, index) => ({
+                start: minValue + index * intervalLength,
+                end: minValue + (index + 1) * intervalLength,
+                count: 0
+            }));
+
+            validValues.forEach(value => {
+                for (const interval of intervals) {
+                    if (value >= interval.start && value <= interval.end) {
+                        interval.count++;
+                        break;
+                    }
+                }
+            });
+
+            const totalCategories = validValues.length;
+            const relativeDistribution = {};
+            const percentageDistribution = {};
+
+            intervals.forEach(interval => {
+                const absoluteFrequency = interval.count;
+                const relativeFrequency = absoluteFrequency / totalCategories;
+                const percentageFrequency = relativeFrequency * 100;
+
+                const intervalLabel = `${interval.start.toFixed(2)} - ${interval.end.toFixed(2)}`;
+                relativeDistribution[intervalLabel] = relativeFrequency.toFixed(4);
+                percentageDistribution[intervalLabel] = percentageFrequency.toFixed(2) + '%';
+            });
+
+            return {
+                absolute: intervals.map(interval => interval.count),
+                relative: relativeDistribution,
+                percentage: percentageDistribution
+            };
+        }
+		// Function to calculate distribution for a given column
+        function calculateDistribution(columnValues) {
+            const absoluteDistribution = {};
+            columnValues.forEach(function (value) {
+                absoluteDistribution[value] = (absoluteDistribution[value] || 0) + 1;
+            });
+
+            const totalCategories = columnValues.length;
+            const relativeDistribution = {};
+            const percentageDistribution = {};
+
+            for (const category in absoluteDistribution) {
+                const absoluteFrequency = absoluteDistribution[category];
+                const relativeFrequency = absoluteFrequency / totalCategories;
+                const percentageFrequency = relativeFrequency * 100;
+
+                relativeDistribution[category] = relativeFrequency.toFixed(4);
+                percentageDistribution[category] = percentageFrequency.toFixed(2) + '%';
+            }
+
+            return {
+                absolute: absoluteDistribution,
+                relative: relativeDistribution,
+                percentage: percentageDistribution
+            };
+        }
+
+
+		// Function to calculate multivariate distribution for specified columns
+		function calculateMultivariateDistribution(columnLists) {
+			const jointDistribution = {};
+			const totalCategories = columnLists[0].length;
+
+			for (let i = 0; i < totalCategories; i++) {
+				const jointKey = columnLists.map(column => column[i]).join('|');
+
+				if (jointDistribution[jointKey]) {
+					jointDistribution[jointKey]++;
+				} else {
+					jointDistribution[jointKey] = 1;
+				}
+			}
+
+			// Calculate relative and percentage distribution
+			const relativeDistribution = {};
+			const percentageDistribution = {};
+			for (const key in jointDistribution) {
+				const absoluteFrequency = jointDistribution[key];
+				const relativeFrequency = absoluteFrequency / totalCategories;
+				const percentageFrequency = relativeFrequency * 100;
+
+				relativeDistribution[key] = relativeFrequency.toFixed(4);
+				percentageDistribution[key] = percentageFrequency.toFixed(2) + '%';
+			}
+
+			return {
+				absolute: jointDistribution,
+				relative: relativeDistribution,
+				percentage: percentageDistribution
+			};
+		}
+    </script>
+</body>
+
+</html>
