@@ -1,0 +1,40 @@
+C:\Users\simon\source\repos\homework3_Csh\homework3_Csh\bin\Debug\homework3_Csh.exe.config
+C:\Users\simon\source\repos\homework3_Csh\homework3_Csh\bin\Debug\homework3_Csh.exe
+C:\Users\simon\source\repos\homework3_Csh\homework3_Csh\bin\Debug\homework3_Csh.pdb
+C:\Users\simon\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.csproj.AssemblyReference.cache
+C:\Users\simon\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.Form1.resources
+C:\Users\simon\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.Properties.Resources.resources
+C:\Users\simon\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.csproj.GenerateResource.cache
+C:\Users\simon\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.csproj.CoreCompileInputs.cache
+C:\Users\simon\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.exe
+C:\Users\simon\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.pdb
+C:\Users\concu\Downloads\homework3_Csh\homework3_Csh\homework3_Csh\bin\Debug\homework3_Csh.exe.config
+C:\Users\concu\Downloads\homework3_Csh\homework3_Csh\homework3_Csh\bin\Debug\homework3_Csh.exe
+C:\Users\concu\Downloads\homework3_Csh\homework3_Csh\homework3_Csh\bin\Debug\homework3_Csh.pdb
+C:\Users\concu\Downloads\homework3_Csh\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.csproj.AssemblyReference.cache
+C:\Users\concu\Downloads\homework3_Csh\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.Form1.resources
+C:\Users\concu\Downloads\homework3_Csh\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.Properties.Resources.resources
+C:\Users\concu\Downloads\homework3_Csh\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.csproj.GenerateResource.cache
+C:\Users\concu\Downloads\homework3_Csh\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.csproj.CoreCompileInputs.cache
+C:\Users\concu\Downloads\homework3_Csh\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.exe
+C:\Users\concu\Downloads\homework3_Csh\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.pdb
+C:\Users\concu\Downloads\homework3_Csh (1)\homework3_Csh\homework3_Csh\bin\Debug\homework3_Csh.exe.config
+C:\Users\concu\Downloads\homework3_Csh (1)\homework3_Csh\homework3_Csh\bin\Debug\homework3_Csh.exe
+C:\Users\concu\Downloads\homework3_Csh (1)\homework3_Csh\homework3_Csh\bin\Debug\homework3_Csh.pdb
+C:\Users\concu\Downloads\homework3_Csh (1)\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.csproj.AssemblyReference.cache
+C:\Users\concu\Downloads\homework3_Csh (1)\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.Form1.resources
+C:\Users\concu\Downloads\homework3_Csh (1)\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.Properties.Resources.resources
+C:\Users\concu\Downloads\homework3_Csh (1)\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.csproj.GenerateResource.cache
+C:\Users\concu\Downloads\homework3_Csh (1)\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.csproj.CoreCompileInputs.cache
+C:\Users\concu\Downloads\homework3_Csh (1)\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.exe
+C:\Users\concu\Downloads\homework3_Csh (1)\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.pdb
+C:\Users\Simone\source\repos\homework3_Csh\homework3_Csh\bin\Debug\homework3_Csh.exe.config
+C:\Users\Simone\source\repos\homework3_Csh\homework3_Csh\bin\Debug\homework3_Csh.exe
+C:\Users\Simone\source\repos\homework3_Csh\homework3_Csh\bin\Debug\homework3_Csh.pdb
+C:\Users\Simone\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.csproj.AssemblyReference.cache
+C:\Users\Simone\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.Form1.resources
+C:\Users\Simone\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.Properties.Resources.resources
+C:\Users\Simone\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.csproj.GenerateResource.cache
+C:\Users\Simone\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.csproj.CoreCompileInputs.cache
+C:\Users\Simone\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.exe
+C:\Users\Simone\source\repos\homework3_Csh\homework3_Csh\obj\Debug\homework3_Csh.pdb
