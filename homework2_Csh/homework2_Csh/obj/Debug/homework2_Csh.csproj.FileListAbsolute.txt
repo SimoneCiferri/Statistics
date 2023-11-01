@@ -18,3 +18,13 @@ C:\Users\simon\source\repos\homework2_Csh\homework2_Csh\obj\Debug\homework2_Csh.
 C:\Users\simon\source\repos\homework2_Csh\homework2_Csh\obj\Debug\homework2_Csh.csproj.CoreCompileInputs.cache
 C:\Users\simon\source\repos\homework2_Csh\homework2_Csh\obj\Debug\homework2_Csh.exe
 C:\Users\simon\source\repos\homework2_Csh\homework2_Csh\obj\Debug\homework2_Csh.pdb
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework2_Csh\homework2_Csh\bin\Debug\homework2_Csh.exe.config
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework2_Csh\homework2_Csh\bin\Debug\homework2_Csh.exe
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework2_Csh\homework2_Csh\bin\Debug\homework2_Csh.pdb
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework2_Csh\homework2_Csh\obj\Debug\homework2_Csh.csproj.AssemblyReference.cache
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework2_Csh\homework2_Csh\obj\Debug\homework2_Csh.Form1.resources
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework2_Csh\homework2_Csh\obj\Debug\homework2_Csh.Properties.Resources.resources
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework2_Csh\homework2_Csh\obj\Debug\homework2_Csh.csproj.GenerateResource.cache
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework2_Csh\homework2_Csh\obj\Debug\homework2_Csh.csproj.CoreCompileInputs.cache
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework2_Csh\homework2_Csh\obj\Debug\homework2_Csh.exe
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework2_Csh\homework2_Csh\obj\Debug\homework2_Csh.pdb

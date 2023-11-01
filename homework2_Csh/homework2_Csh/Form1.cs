@@ -54,7 +54,7 @@ namespace homework2_Csh
                 //create single distributions
                 backgroundDistrib = distribution.createDistrib(background_col);
 
-                int k = 2;
+                int k = 6;
                 remunerationDistrib = distribution.createDistribFromContinuous(remuneration_col, k);
 
                 hardWorkerDistrib = distribution.createDistrib(hardWorker_col);
@@ -81,8 +81,9 @@ namespace homework2_Csh
                 List<int> variables = new List<int>();
                 variables.Add(4);
                 variables.Add(16);
-                //if you add the following line of code you will calculate Multivariate distribution of columns 4, 16 and 2
-                //variables.Add(2);
+                //if you add the following line of code you will calculate Multivariate distribution of columns 4, 16 18 (height) and 17 (weight)
+                variables.Add(18);
+                //variables.Add(17);
                 multivariateDistribution = distribution.calculateMultivariateDistrib(profLifeSourveyPath, variables);
                 multiAbsFreqDistrib = distribution.multiAbsFrequencyDistrib(multivariateDistribution);
                 multiRelFreqDistrib = distribution.multiRelativeFrequencyDistrib(multivariateDistribution);

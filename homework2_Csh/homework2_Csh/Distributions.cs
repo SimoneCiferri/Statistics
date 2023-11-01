@@ -104,7 +104,6 @@ namespace homework2_Csh
                 if (double.TryParse(value, out double doubleValue))
                 {
                     double_col.Add(doubleValue);
-                    Debug.WriteLine($"STO STAMPANN O VALOR '{value}'");
                 }
                 else
                 {
@@ -115,10 +114,7 @@ namespace homework2_Csh
 
             // Calculate the lenght of each intervall
             double intervallenght = (double_col.Max() - double_col.Min()) / k;
-            Debug.WriteLine($"INTERVAL LEN '{intervallenght}'");
-            Debug.WriteLine($"INTERVAL Max '{double_col.Max()}'");
-            Debug.WriteLine($"INTERVAL Min '{double_col.Min()}'");
-            Debug.WriteLine($"INTERVAL Min '{double_col.Min()}'");
+
 
             //calculate distribution
             foreach (double val in double_col)
@@ -136,7 +132,7 @@ namespace homework2_Csh
                         else {
                             string_interval = (interval-1).ToString();
                         }
-                        Debug.WriteLine($"VALUE '{val}' is on intervall '{string_interval}'");
+
                         // if exists inc. counter
                         if (distrib.ContainsKey(string_interval))
                         {
