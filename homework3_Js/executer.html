@@ -26,7 +26,7 @@
             this.graphBitmap = null;
 
             // Genera gli attacchi
-            var adv = new Adversary(400, 40, 0.5);
+            var adv = new Adversary(1000, 40, 0.5);
             adv.generateAttacks();
 
             // Recupera i dati
@@ -47,16 +47,16 @@
             var chart4 = new LineChart(document.getElementById('pictureBox4'));
             chart4.drawChartCont(data4);
 
-            var k = 25;
+            var k = 20;
             var histogramDistChart1 = adv.createHistoDistrib(data1, k);
             var histogramDistChart2 = adv.createHistoDistrib(data2, k);
-            var histogramDistChart3 = adv.createHistoDistrib(data3, k);
-            var histogramDistChart4 = adv.createHistoDistrib(data4, k);
+            var histogramDistChart3 = adv.createHistoDistribFloat(data3, k);
+            var histogramDistChart4 = adv.createHistoDistribFloat(data4, k);
 
-            var histogram1 = new Histogram(chart1, histogramDistChart1, k);
-            var histogram2 = new Histogram(chart2, histogramDistChart2, k);
-            var histogram3 = new Histogram(chart3, histogramDistChart3, k);
-            var histogram4 = new Histogram(chart4, histogramDistChart4, k);
+            var histogram1 = new Histogram(chart1, histogramDistChart1, k, "");
+            var histogram2 = new Histogram(chart2, histogramDistChart2, k, "");
+            var histogram3 = new Histogram(chart3, histogramDistChart3, k, "c");
+            var histogram4 = new Histogram(chart4, histogramDistChart4, k, "c");
         }
 
         // Simulate Form1_Load event

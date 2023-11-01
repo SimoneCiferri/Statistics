@@ -3,13 +3,21 @@ class Histogram {
     lineChart;
     data;
     k;
-
-    constructor(lineChart, data, k) {
+	additionalString;
+	
+	constructor(lineChart, data, k, additionalString) {
         this.lineChart = lineChart;
         this.data = data;
         this.k = k;
-        this.DrawVerticalHistogram();
-        
+
+		if (typeof additionalString === 'string' && additionalString.trim() !== '') {
+			this.additionalString = additionalString;
+			this.DrawVerticalHistogramF();
+        } else {
+            this.additionalString = '';
+			this.DrawVerticalHistogram();
+        }
+		
     }
 
     drawLine(ctx, x1, y1, x2,y2, stroke = 'black', width = 3) {
@@ -91,6 +99,7 @@ class Histogram {
         let yMax = this.lineChart.yMax;
 
         let dist = this.computeDistF(this.data);
+		
 
         let g = this.lineChart._graphBitmap.getContext('2d');
 
@@ -120,7 +129,7 @@ class Histogram {
         let dist = Array(this.k).fill(0);
         let lenInterval = this.lineChart.yMax / this.k;
         let j = 0;
-
+		
         for (let numIntervallo = 0; numIntervallo < this.k; numIntervallo++) {
             for (let key in systemsFinalValues) {
                 if (systemsFinalValues[key] >= j && systemsFinalValues[key] < j + lenInterval) {
