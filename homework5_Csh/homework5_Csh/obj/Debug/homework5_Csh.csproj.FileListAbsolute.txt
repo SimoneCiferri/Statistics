@@ -1,0 +1,10 @@
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework5_Csh\homework5_Csh\bin\Debug\homework5_Csh.exe.config
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework5_Csh\homework5_Csh\bin\Debug\homework5_Csh.exe
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework5_Csh\homework5_Csh\bin\Debug\homework5_Csh.pdb
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework5_Csh\homework5_Csh\obj\Debug\homework5_Csh.csproj.AssemblyReference.cache
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework5_Csh\homework5_Csh\obj\Debug\homework5_Csh.Form1.resources
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework5_Csh\homework5_Csh\obj\Debug\homework5_Csh.Properties.Resources.resources
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework5_Csh\homework5_Csh\obj\Debug\homework5_Csh.csproj.GenerateResource.cache
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework5_Csh\homework5_Csh\obj\Debug\homework5_Csh.csproj.CoreCompileInputs.cache
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework5_Csh\homework5_Csh\obj\Debug\homework5_Csh.exe
+E:\Bachelor's Degree\GitHub\Statistics\trunk\homework5_Csh\homework5_Csh\obj\Debug\homework5_Csh.pdb
