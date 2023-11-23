@@ -1,6 +1,5 @@
-class Adversary {
+class DataGenerator {
 	
-	lineChartValuesChart1 = [];
 	lineChartValuesArithmeticBrownian = [];
 	lineChartValuesGeometricBrownian = [];
 	lineChartValuesOrnsteinUhlenbeck = [];
@@ -11,12 +10,10 @@ class Adversary {
 	lineChartValuesHeston = [];
 	lineChartValuesChenModel = [];
 	
-    constructor(m, n, p) {
+    constructor(m, n) {
         this.M = m;
         this.N = n;
-        this.P = p;
         
-        this.generateAttacks();
 		this.generateAllValues();
     }
 		
@@ -151,35 +148,6 @@ class Adversary {
 			this.generateChenModel();
 		}
 	}
-
-    generateAttacks() {
-		
-        let random = Math.random();
-
-        for (let i = 0; i < this.M; i++) {
-            const valuesChart1 = [];
-
-            for (let j = 0; j < this.N; j++) {
-                // Generate random from (0, 1]
-                let randomNumber = Math.random();
-
-                if (randomNumber > this.P) {
-                    // Attack success
-                    valuesChart1.push(-1);
-                } else {
-                    // Attack failed
-                    valuesChart1.push(1);
-                }
-            }
-            this.lineChartValuesChart1.push(valuesChart1);
-        }
-		console.log("Data generated (adv)");
-    }
-
-    getLineChart1AttackList() {
-		console.log("Data retrieved (adv)");
-        return this.lineChartValuesChart1;
-    }
 	
 	getAllValuesArithmeticBrownian() {
 		return this.lineChartValuesArithmeticBrownian;

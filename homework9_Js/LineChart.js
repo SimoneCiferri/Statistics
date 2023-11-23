@@ -14,7 +14,7 @@ class LineChart {
         this._PADDING = 50;
         this._graphBitmap = pictureBox;
 
-        this._graphBitmap.width = 1000;
+        this._graphBitmap.width = 1400;
         this._graphBitmap.height = 1000;
 
     }
@@ -23,7 +23,7 @@ class LineChart {
 drawChart(data) {
     let g = this._graphBitmap.getContext("2d");
 
-    let width = 1000 - 2 * this.PADDING;
+    let width = 1400 - 2 * this.PADDING;
     let height = 1000 - 2 * this.PADDING;
 
 
@@ -33,7 +33,7 @@ drawChart(data) {
     this.yMin = -Math.max(...data.map(list => list.length));
 	
 	
-    g.clearRect(0, 0, 1000, 1000);
+    g.clearRect(0, 0, 1400, 1000);
     g.beginPath();
 
     g.moveTo(this.PADDING, this.PADDING + height / 2);
@@ -95,7 +95,7 @@ drawChart(data) {
 drawChartCont(data) {
     let g = this._graphBitmap.getContext("2d");
 
-    let width = 1000 - 2 * this.PADDING;
+    let width = 1400 - 2 * this.PADDING;
     let height = 1000 - 2 * this.PADDING;
 
 
@@ -105,7 +105,7 @@ drawChartCont(data) {
     this.yMin = 0;
 	
 	
-    g.clearRect(0, 0, 1000, 1000);
+    g.clearRect(0, 0, 1400, 1000);
     g.beginPath();
 
     g.moveTo(this.PADDING, this.PADDING + height);
