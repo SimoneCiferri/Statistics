@@ -43,7 +43,8 @@
         <option value="geometricBrownian">Geometric Brownian (Black–Scholes)</option>
         <option value="ornsteinUhlenbeck">Ornstein–Uhlenbeck (mean-reverting)</option>
         <option value="vasicek">Vasicek</option>
-        <option value="hullWhite">Hull–White</option>        
+        <option value="hullWhite">Hull–White</option>
+		<option value="coxIngersollRoss">Cox–Ingersoll–Ross</option>    
         <option value="blackKarasinski">Black–Karasinski</option>
         <option value="heston">Heston</option>
         <option value="chenModel">Chen model</option>
@@ -64,10 +65,18 @@
 		let adv;
 		let data1;
 		let chart1;
+		let lineChartValuesArithmeticBrownian;
+		let lineChartValuesGeometricBrownian;
+		let lineChartValuesOrnsteinUhlenbeck;
+		let lineChartValuesVasicek;
+		let lineChartValuesHullWhite;
+		let lineChartValuesCIR;
+		let lineChartValuesBlackKarasinski;
+		let lineChartValuesHeston;
+		let lineChartValuesChenModel;
 		
 		// Genera i dati
         adv = new Adversary(m, n, p);
-        adv.generateAttacks();
 
         // Recupera i dati
         data1 = adv.getLineChart1AttackList();
@@ -76,34 +85,96 @@
 		chart1 = new LineChart(document.getElementById('pictureBox1'));
         chart1.drawChart(data1);
 		
-        function updateInputValues() {
-            adv = new Adversary(m, n, p);
-			data1 = adv.getLineChart1AttackList();
+        function updateInputValues(data1) {
 			chart1.drawChart(data1);
         }
 
         function handleSelection() {
             selectedDistribution = document.getElementById("menu").value;
-			console.log(`selectedDistribution updated: ${selectedDistribution}`);
-            updateInputValues();
+			console.log("HERE");
+            // Print something different based on the selected distribution
+            switch(selectedDistribution) {
+                case "arithmeticBrownian":
+                    console.log("Arithmetic Brownian selected");
+					lineChartValuesArithmeticBrownian = adv.getAllValuesArithmeticBrownian();
+					for (let i = 0; i < lineChartValuesArithmeticBrownian.length; i++) {
+						const processValues = lineChartValuesArithmeticBrownian[i];
+						
+						console.log(`Process ${i + 1}:`);
+						
+						for (let j = 0; j < processValues.length; j++) {
+							console.log(`   Value ${j + 1}: ${processValues[j]}`);
+						}
+					}
+					updateInputValues(lineChartValuesArithmeticBrownian);
+                    break;
+                case "geometricBrownian":
+                    console.log("Geometric Brownian selected");
+					lineChartValuesGeometricBrownian = adv.getAllValuesGeometricBrownian();
+					updateInputValues(lineChartValuesGeometricBrownian);
+                    break;
+                case "ornsteinUhlenbeck":
+                    console.log("Ornstein–Uhlenbeck selected");
+					lineChartValuesOrnsteinUhlenbeck = adv.getAllValuesOrnsteinUhlenbeck();
+					updateInputValues(lineChartValuesOrnsteinUhlenbeck);
+                    break;
+                case "vasicek":
+                    console.log("Vasicek selected");
+					lineChartValuesVasicek = adv.getAllValuesVasicek();
+					updateInputValues(lineChartValuesVasicek);
+                    break;
+                case "hullWhite":
+                    console.log("Hull–White selected");
+					lineChartValuesHullWhite = adv.getAllValuesHullWhite();
+					updateInputValues(lineChartValuesHullWhite);
+                    break;
+				case "coxIngersollRoss":
+                    console.log("Cox–Ingersoll–Ross");
+					lineChartValuesHullWhite = adv.getAllValuesCIR();
+					updateInputValues(lineChartValuesHullWhite);
+                    break;
+                case "blackKarasinski":
+                    console.log("Black–Karasinski selected");
+					lineChartValuesBlackKarasinski = adv.getAllValuesBlackKarasinski();
+					updateInputValues(lineChartValuesBlackKarasinski);
+                    break;
+                case "heston":
+                    console.log("Heston selected");
+					lineChartValuesHeston = adv.getAllValuesHeston();
+					updateInputValues(lineChartValuesHeston);
+                    break;
+                case "chenModel":
+                    console.log("Chen model selected");
+					lineChartValuesChenModel = adv.getAllValuesChenModel();
+					updateInputValues(lineChartValuesChenModel);
+                    break;
+                default:
+                    console.log("Unknown distribution selected");
+            }
         }
 
         document.getElementById("inputm").addEventListener("input", function() {
             m = parseInt(this.value) || 0;
+			adv = new Adversary(m, n, p);
+			data1 = adv.getLineChart1AttackList();
             console.log(`m updated: ${m}`);
-            updateInputValues();
+            updateInputValues(data1);
         });
 
         document.getElementById("inputn").addEventListener("input", function() {
             n = parseInt(this.value) || 0;
+			adv = new Adversary(m, n, p);
+			data1 = adv.getLineChart1AttackList();
 			console.log(`n updated: ${n}`);
-            updateInputValues();
+            updateInputValues(data1);
         });
 
         document.getElementById("inputp").addEventListener("input", function() {
             p = parseInt(this.value) || 0;
+			adv = new Adversary(m, n, p);
+			data1 = adv.getLineChart1AttackList();
 			console.log(`p updated: ${p}`);
-            updateInputValues();
+            updateInputValues(data1);
         });
     </script>
 	
