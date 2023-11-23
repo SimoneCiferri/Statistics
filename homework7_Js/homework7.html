@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 9</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #canvasContainer {
+            position: relative;
+            margin-top: 20px; /* Add some margin to create space */
+        }
+
+        #pictureBox1 {
+            border: 1px solid #000;
+        }
+
+        label, input, select {
+            margin-bottom: 10px; /* Add some margin to create space between elements */
+        }
+    </style>
+</head>
+<body>
+    <h1>Homework 9</h1>
+    <h2>Indications on how to use...</h2>
+
+    <label for="inputm">Enter value for M:</label>
+    <input type="number" id="inputm" placeholder="Enter M" value="1000" />
+
+    <label for="inputn">Enter value for N:</label>
+    <input type="number" id="inputn" placeholder="Enter N" value="40" />
+
+    <label for="menu">Select a Distribution:</label>
+    <select id="menu" onchange="handleSelection()">
+        <option value="arithmeticBrownian">Arithmetic Brownian</option>
+        <option value="geometricBrownian">Geometric Brownian (Black–Scholes)</option>
+        <option value="ornsteinUhlenbeck">Ornstein–Uhlenbeck (mean-reverting)</option>
+        <option value="vasicek">Vasicek</option>
+        <option value="hullWhite">Hull–White</option>
+        <option value="coxIngersollRoss">Cox–Ingersoll–Ross</option>    
+        <option value="blackKarasinski">Black–Karasinski</option>
+        <option value="heston">Heston</option>
+        <option value="chenModel">Chen model</option>
+    </select>
+    
+    <div id="canvasContainer">
+        <canvas id="pictureBox1" width="1400" height="1000"></canvas>
+    </div>
+    
+    <script src="./DataGenerator.js"></script>
+    <script src="./LineChart.js"></script>
+
+    <script>
+        let m = 1000;
+        let n = 40;
+        let selectedDistribution = "arithmeticBrownian";
+        let dataGenerator;
+        let chart1;
+        let lineChartValues;
+
+        // Genera i dati
+        dataGenerator = new DataGenerator(m, n);
+
+        // Genera grafico
+        chart1 = new LineChart(document.getElementById('pictureBox1'));
+        lineChartValues = dataGenerator.getAllValuesArithmeticBrownian();
+        chart1.drawChart(lineChartValues);
+
+        function updateInputValues(data) {
+            chart1.drawChart(data);
+        }
+
+        function handleSelection() {
+            selectedDistribution = document.getElementById("menu").value;
+            // Print something different based on the selected distribution
+            lineChartValues = getLineChartValues(selectedDistribution);
+            updateInputValues(lineChartValues);
+        }
+
+        function getLineChartValues(distribution) {
+            switch (distribution) {
+                case "arithmeticBrownian":
+                    console.log("Arithmetic Brownian selected");
+                    return dataGenerator.getAllValuesArithmeticBrownian();
+                case "geometricBrownian":
+                    console.log("Geometric Brownian selected");
+                    return dataGenerator.getAllValuesGeometricBrownian();
+                case "ornsteinUhlenbeck":
+                    console.log("Ornstein–Uhlenbeck selected");
+                    return dataGenerator.getAllValuesOrnsteinUhlenbeck();
+                case "vasicek":
+                    console.log("Vasicek selected");
+                    return dataGenerator.getAllValuesVasicek();
+                case "hullWhite":
+                    console.log("Hull–White selected");
+                    return dataGenerator.getAllValuesHullWhite();
+                case "coxIngersollRoss":
+                    console.log("Cox–Ingersoll–Ross");
+                    return dataGenerator.getAllValuesCIR();
+                case "blackKarasinski":
+                    console.log("Black–Karasinski selected");
+                    return dataGenerator.getAllValuesBlackKarasinski();
+                case "heston":
+                    console.log("Heston selected");
+                    return dataGenerator.getAllValuesHeston();
+                case "chenModel":
+                    console.log("Chen model selected");
+                    return dataGenerator.getAllValuesChenModel();
+                default:
+                    console.log("Unknown distribution selected");
+                    return [];
+            }
+        }
+
+        document.getElementById("inputm").addEventListener("input", function() {
+            m = parseInt(this.value) || 0;
+            dataGenerator = new DataGenerator(m, n);
+            selectedDistribution = document.getElementById("menu").value;
+            lineChartValues = getLineChartValues(selectedDistribution);
+            updateInputValues(lineChartValues);
+            console.log(`m updated: ${m}`);
+        });
+
+        document.getElementById("inputn").addEventListener("input", function() {
+            n = parseInt(this.value) || 0;
+            dataGenerator = new DataGenerator(m, n);
+            selectedDistribution = document.getElementById("menu").value;
+            lineChartValues = getLineChartValues(selectedDistribution);
+            updateInputValues(lineChartValues);
+            console.log(`n updated: ${n}`);
+        });
+
+    </script>
+    
+</body>
+</html>
