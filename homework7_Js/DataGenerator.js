@@ -9,161 +9,211 @@ class DataGenerator {
 	lineChartValuesBlackKarasinski = [];
 	lineChartValuesHeston = [];
 	lineChartValuesChenModel = [];
+	lineChartValuesChenModelX = [];
+	lineChartValuesChenModelY = [];
 	
     constructor(m, n) {
         this.M = m;
         this.N = n;
         
-		this.generateAllValues();
     }
-		
-	generateArithmeticBrownian() {
+	
+	generateArithmeticBrownianValues(numSteps, drift, volatility, timeStep) {
 		const valuesChart = [];
 		let currentValue = 0;
 
-		for (let j = 0; j < this.N; j++) {
+		for (let i = 0; i < numSteps; i++) {
 			const randomValue = (Math.random() - 0.5) * 2;
-			currentValue += randomValue;
+			const increment = drift * timeStep + volatility * Math.sqrt(timeStep) * randomValue;
+			currentValue += increment;
 			valuesChart.push(currentValue);
 		}
 
+		// Append the generated values to the global variable
 		this.lineChartValuesArithmeticBrownian.push(valuesChart);
 	}
-
-	generateGeometricBrownian() {
+	
+	generateGeometricBrownianValues(numSteps, drift, volatility, timeStep) {
 		const valuesChart = [];
-		let currentValue = 0;
+		let currentValue = 2;
 
-		for (let j = 0; j < this.N; j++) {
+		for (let i = 0; i < numSteps; i++) {
 			const randomValue = Math.random() - 0.5;
-			currentValue += randomValue;
+			const increment = drift * currentValue * timeStep + volatility * currentValue * Math.sqrt(timeStep) * randomValue;
+			currentValue += increment;
 			valuesChart.push(currentValue);
 		}
 
+		// Append the generated values to the global variable
 		this.lineChartValuesGeometricBrownian.push(valuesChart);
 	}
-
-	generateOrnsteinUhlenbeck() {
+	
+	
+	generateOrnsteinUhlenbeckValues(numSteps, initialX, theta, mu, sigma, timeStep) {
 		const valuesChart = [];
-		let currentValue = 0;
+		let currentValue = initialX;
 
-		for (let j = 0; j < this.N; j++) {
-			const randomValue = -0.1 * currentValue + Math.sqrt(0.1) * (Math.random() - 0.5);
-			currentValue += randomValue;
+		for (let i = 0; i < numSteps; i++) {
+			const randomValue = (Math.random() - 0.5) * 2;
+			const increment = theta * (mu - currentValue) * timeStep + sigma * Math.sqrt(timeStep) * randomValue;
+			currentValue += increment;
 			valuesChart.push(currentValue);
 		}
 
+		// Append the generated values to the global variable
 		this.lineChartValuesOrnsteinUhlenbeck.push(valuesChart);
 	}
+	
+	generateVasicekValues(numSteps, r0, kappa, theta, sigma, timeStep) {
+	  r0 = r0 || 0.05; // initial short rate
+	  kappa = kappa || 0.1; // mean reversion speed
+	  theta = theta || 0.05; // long-term mean of the short rate
+	  sigma = sigma || 0.1; // volatility of the short rate
+	  timeStep = timeStep || 0.1;
+	  numSteps = numSteps || 100;
 
-	generateVasicek() {
-		const valuesChart = [];
-		let currentValue = 0;
+	  const values = [r0]; // array to store short rate values over time
 
-		for (let j = 0; j < this.N; j++) {
-			const randomValue = 0.1 * (1 - currentValue) + 0.1 * Math.sqrt(currentValue) * (Math.random() - 0.5);
-			currentValue += randomValue;
-			valuesChart.push(currentValue);
-		}
+	  for (let i = 1; i <= numSteps; i++) {
+		const drift = kappa * (theta - values[i - 1]) * timeStep;
+		const diffusion = sigma * Math.sqrt(timeStep) * Math.random(); // using a random component for diffusion
 
-		this.lineChartValuesVasicek.push(valuesChart);
+		const nextValue = values[i - 1] + drift + diffusion;
+		values.push(nextValue);
+	  }
+
+	  this.lineChartValuesVasicek.push(values);
 	}
 
-	generateHullWhite() {
+	generateHullWhiteValues(numSteps, mean, speed, volatility, timeStep, longTermMean, meanReversionSpeed) {
 		const valuesChart = [];
-		let currentValue = 0;
+		let currentValue = 2;
 
-		for (let j = 0; j < this.N; j++) {
-			const randomValue = 0.1 * (Math.random() - 0.5);
-			currentValue += randomValue;
+		for (let i = 0; i < numSteps; i++) {
+			const randomValue = Math.random() - 0.5;
+			const increment = speed * (mean - currentValue) * timeStep + volatility * Math.sqrt(timeStep) * randomValue;
+			const meanIncrement = meanReversionSpeed * (longTermMean - currentValue) * timeStep;
+			currentValue += increment + meanIncrement;
 			valuesChart.push(currentValue);
 		}
 
+		// Append the generated values to the global variable
 		this.lineChartValuesHullWhite.push(valuesChart);
 	}
 
-	generateCIR() {
+	
+	generateCIRValues(numSteps, mean, speed, volatility, timeStep, longTermMean, meanReversionSpeed) {
 		const valuesChart = [];
-		let currentValue = 0.1;
+		let currentValue = 2;
 
-		for (let j = 0; j < this.N; j++) {
-			const randomValue = 0.1 * (0.1 - currentValue) + 0.1 * Math.sqrt(currentValue) * (Math.random() - 0.5);
-			currentValue += randomValue;
+		for (let i = 0; i < numSteps; i++) {
+			const randomValue = Math.random() - 0.5;
+			const increment = speed * (mean - currentValue) * timeStep + volatility * Math.sqrt(currentValue) * Math.sqrt(timeStep) * randomValue;
+			const meanIncrement = meanReversionSpeed * (longTermMean - currentValue) * timeStep;
+			currentValue += increment + meanIncrement;
 			valuesChart.push(currentValue);
 		}
 
+		// Append the generated values to the global variable
 		this.lineChartValuesCIR.push(valuesChart);
 	}
 
-	generateBlackKarasinski() {
+	generateBlackKarasinskiValues(numSteps, mean, speed, volatility, timeStep, longTermMean, meanReversionSpeed, eta) {
 		const valuesChart = [];
-		let currentValue = 0;
+		let currentValue = 2;
 
-		for (let j = 0; j < this.N; j++) {
-			const randomValue = 0.1 * (1 - currentValue) * (Math.random() - 0.5);
-			currentValue += randomValue;
+		for (let i = 0; i < numSteps; i++) {
+			const randomValue = Math.random() - 0.5;
+			const increment = speed * (mean - currentValue) * timeStep + volatility * Math.sqrt(currentValue) * Math.sqrt(timeStep) * randomValue;
+			const meanIncrement = meanReversionSpeed * (longTermMean - currentValue) * timeStep;
+			const etaIncrement = eta * Math.sqrt(currentValue) * Math.sqrt(timeStep) * randomValue;
+			currentValue += increment + meanIncrement + etaIncrement;
 			valuesChart.push(currentValue);
 		}
 
+		// Append the generated values to the global variable
 		this.lineChartValuesBlackKarasinski.push(valuesChart);
 	}
 
-	generateHeston() {
+	
+	generateHestonValues(numSteps, initialPrice, mean, speed, volatility, correlation, longTermVolatility, meanReversionSpeed, eta, timeStep) {
 		const valuesChart = [];
-		let currentValue = 0.1;
+		let currentPrice = initialPrice;
+		let currentVolatility = volatility;
 
-		for (let j = 0; j < this.N; j++) {
-			const randomValue1 = 0.1 * (0.1 - currentValue) + 0.1 * Math.sqrt(currentValue) * (Math.random() - 0.5);
-			const randomValue2 = 0.1 * Math.sqrt(currentValue) * (Math.random() - 0.5);
-			currentValue += randomValue1 + randomValue2;
-			valuesChart.push(currentValue);
+		for (let i = 0; i < numSteps; i++) {
+			const randomValue1 = Math.random();
+			const randomValue2 = Math.random();
+			const priceIncrement = mean * currentPrice * timeStep + Math.sqrt(currentVolatility * timeStep) * Math.sqrt(1 - correlation ** 2) * randomValue1;
+			const volatilityIncrement = meanReversionSpeed * (longTermVolatility - currentVolatility) * timeStep + eta * Math.sqrt(currentVolatility * timeStep) * randomValue2;
+
+			currentPrice += priceIncrement;
+			currentVolatility += volatilityIncrement;
+
+			valuesChart.push(currentPrice);
 		}
 
+		// Append the generated values to the global variable
 		this.lineChartValuesHeston.push(valuesChart);
 	}
+	
+	
+	generateChenModelValues(numSteps, initialX, initialY, alpha, beta, gamma, delta, rho, timeStep) {
+		const valuesChartX = [];
+		const valuesChartY = [];
+		let currentX = initialX;
+		let currentY = initialY;
 
-	generateChenModel() {
-		const valuesChart = [];
-		let currentValue = 0.1;
+		for (let i = 0; i < numSteps; i++) {
+			const randomValue1 = Math.random();
+			const randomValue2 = Math.random();
+			const xIncrement = alpha * (beta * currentY - currentX) * timeStep;
+			const yIncrement = (delta * currentX - gamma * currentY - currentX * currentZ) * timeStep;
 
-		for (let j = 0; j < this.N; j++) {
-			const randomValue = 0.1 * Math.sqrt(Math.abs(currentValue)) * (Math.random() - 0.5);
-			currentValue += randomValue;
-			valuesChart.push(currentValue);
+			currentX += xIncrement;
+			currentY += yIncrement;
+
+			valuesChartX.push(currentX);
+			valuesChartY.push(currentY);
 		}
 
-		this.lineChartValuesChenModel.push(valuesChart);
-	}
-
-	generateAllValues() {
-		for (let i = 0; i < this.M; i++) {
-			this.generateArithmeticBrownian();
-			this.generateGeometricBrownian();
-			this.generateOrnsteinUhlenbeck();
-			this.generateVasicek();
-			this.generateHullWhite();
-			this.generateCIR();
-			this.generateBlackKarasinski();
-			this.generateHeston();
-			this.generateChenModel();
-		}
+		// Append the generated values to the global variables
+		this.lineChartValuesChenModelX.push(valuesChartX);
+		this.lineChartValuesChenModelY.push(valuesChartY);
 	}
 	
-	getAllValuesArithmeticBrownian() {
+	getArithmeticBrownianValues(numSteps, drift, volatility, timeStep) {
+		this.lineChartValuesArithmeticBrownian = [];
+		for (let i = 0; i < this.M; i++) {
+			this.generateArithmeticBrownianValues(numSteps, drift, volatility, timeStep);
+		}
 		return this.lineChartValuesArithmeticBrownian;
 	}
-
-	getAllValuesGeometricBrownian() {
+	
+	getGeometricBrownianValues(numSteps, drift, volatility, timeStep) {
+		this.lineChartValuesGeometricBrownian = [];
+		for (let i = 0; i < this.M; i++) {
+			this.generateGeometricBrownianValues(numSteps, drift, volatility, timeStep);
+		}
 		return this.lineChartValuesGeometricBrownian;
 	}
-
-	getAllValuesOrnsteinUhlenbeck() {
+	
+	getOrnsteinUhlenbeckValues(numSteps, initialX, theta, mu, sigma, timeStep) {
+		this.lineChartValuesOrnsteinUhlenbeck = [];
+		for (let i = 0; i < this.M; i++) {
+			this.generateOrnsteinUhlenbeckValues(numSteps, initialX, theta, mu, sigma, timeStep);
+		}
 		return this.lineChartValuesOrnsteinUhlenbeck;
 	}
-
-	getAllValuesVasicek() {
+	
+	getVasicekValues(numSteps, r0, kappa, theta, sigma, timeStep) {
+		this.lineChartValuesVasicek = [];
+		for (let i = 0; i < this.M; i++) {
+			this.generateVasicekValues(numSteps, r0, kappa, theta, sigma, timeStep);
+		}
 		return this.lineChartValuesVasicek;
 	}
+	
 
 	getAllValuesHullWhite() {
 		return this.lineChartValuesHullWhite;

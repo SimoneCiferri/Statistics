@@ -12,7 +12,7 @@
 
         #canvasContainer {
             position: relative;
-            margin-top: 20px; /* Add some margin to create space */
+            margin-top: 20px;
         }
 
         #pictureBox1 {
@@ -20,7 +20,7 @@
         }
 
         label, input, select {
-            margin-bottom: 10px; /* Add some margin to create space between elements */
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -34,6 +34,51 @@
     <label for="inputn">Enter value for N:</label>
     <input type="number" id="inputn" placeholder="Enter N" value="40" />
 
+    <div id="arithmeticAndGeometricBrownianParams" style="display: none;">
+        <label for="inputDrift">Enter value for Drift:</label>
+        <input type="number" id="inputDrift" placeholder="Enter Drift" step="0.01" />
+
+        <label for="inputVolatility">Enter value for Volatility:</label>
+        <input type="number" id="inputVolatility" placeholder="Enter Volatility" step="0.01" />
+
+        <label for="inputTimeStep">Enter value for Time Step:</label>
+        <input type="number" id="inputTimeStep" placeholder="Enter Time Step" step="0.01" />
+    </div>
+	
+	<div id="ornsteinUhlenbeckParams" style="display: none;">
+		<label for="inputInitialX">Enter value for Initial X:</label>
+		<input type="number" id="inputInitialX" placeholder="Enter Initial X" step="0.01" />
+
+		<label for="inputTheta">Enter value for Theta:</label>
+		<input type="number" id="inputTheta" placeholder="Enter Theta" step="0.01" />
+
+		<label for="inputMu">Enter value for Mu:</label>
+		<input type="number" id="inputMu" placeholder="Enter Mu" step="0.01" />
+
+		<label for="inputSigma">Enter value for Sigma:</label>
+		<input type="number" id="inputSigma" placeholder="Enter Sigma" step="0.01" />
+
+		<label for="inputTimeStepOU">Enter value for Time Step (OU):</label>
+		<input type="number" id="inputTimeStepOU" placeholder="Enter Time Step (OU)" step="0.01" />
+	</div>
+
+	<div id="vasicekParams" style="display: none;">
+		<label for="inputInitialR">Enter value for Initial Short Rate (r0):</label>
+		<input type="number" id="inputInitialR" placeholder="Enter Initial Short Rate" step="0.05" />
+
+		<label for="inputKappa">Enter value for Mean Reversion Speed (kappa):</label>
+		<input type="number" id="inputKappa" placeholder="Enter Mean Reversion Speed" step="0.1" />
+
+		<label for="inputThetaVasicek">Enter value for Long-term Mean (theta):</label>
+		<input type="number" id="inputThetaVasicek" placeholder="Enter Long-term Mean" step="0.05" />
+
+		<label for="inputSigmaVasicek">Enter value for Volatility (sigma):</label>
+		<input type="number" id="inputSigmaVasicek" placeholder="Enter Volatility" step="0.1" />
+
+		<label for="inputTimeStepVasicek">Enter value for Time Step:</label>
+		<input type="number" id="inputTimeStepVasicek" placeholder="Enter Time Step" step="0.1" />
+	</div>
+
     <label for="menu">Select a Distribution:</label>
     <select id="menu" onchange="handleSelection()">
         <option value="arithmeticBrownian">Arithmetic Brownian</option>
@@ -41,16 +86,16 @@
         <option value="ornsteinUhlenbeck">Ornstein–Uhlenbeck (mean-reverting)</option>
         <option value="vasicek">Vasicek</option>
         <option value="hullWhite">Hull–White</option>
-        <option value="coxIngersollRoss">Cox–Ingersoll–Ross</option>    
+        <option value="coxIngersollRoss">Cox–Ingersoll–Ross</option>
         <option value="blackKarasinski">Black–Karasinski</option>
         <option value="heston">Heston</option>
         <option value="chenModel">Chen model</option>
     </select>
-    
+
     <div id="canvasContainer">
         <canvas id="pictureBox1" width="1400" height="1000"></canvas>
     </div>
-    
+
     <script src="./DataGenerator.js"></script>
     <script src="./LineChart.js"></script>
 
@@ -67,34 +112,191 @@
 
         // Genera grafico
         chart1 = new LineChart(document.getElementById('pictureBox1'));
-        lineChartValues = dataGenerator.getAllValuesArithmeticBrownian();
-        chart1.drawChart(lineChartValues);
+        handleSelection();
+        
 
         function updateInputValues(data) {
             chart1.drawChart(data);
         }
-
-        function handleSelection() {
-            selectedDistribution = document.getElementById("menu").value;
-            // Print something different based on the selected distribution
+		
+		function updateChanges(selectedDistribution) {
             lineChartValues = getLineChartValues(selectedDistribution);
+            console.log('Generated values:', lineChartValues);
             updateInputValues(lineChartValues);
         }
+
+		// change menù values
+        function handleSelection() {
+            selectedDistribution = document.getElementById("menu").value;
+            toggleDistributionParams(selectedDistribution);
+			updateChanges(selectedDistribution);
+        }
+
+        function toggleDistributionParams(distribution) {
+			const paramsDiv = document.getElementById("arithmeticAndGeometricBrownianParams");
+			const ouParamsDiv = document.getElementById("ornsteinUhlenbeckParams");
+			const vParamsDiv = document.getElementById("vasicekParams");
+
+			// Hide all parameter divs
+			paramsDiv.style.display = "none";
+			ouParamsDiv.style.display = "none";
+			vParamsDiv.style.display = "none";
+
+			if (distribution === "arithmeticBrownian" || distribution === "geometricBrownian") {
+				// Show arithmetic and geometric Brownian parameters
+				paramsDiv.style.display = "block";
+			} else if (distribution === "ornsteinUhlenbeck") {
+				// Show Ornstein–Uhlenbeck parameters
+				ouParamsDiv.style.display = "block";
+			} else if (distribution === "vasicek") {
+				// Show Ornstein–Uhlenbeck parameters
+				vParamsDiv.style.display = "block";
+			}
+			
+			if (distribution === "arithmeticBrownian") {
+				// Set default values for Arithmetic Brownian
+				document.getElementById("inputDrift").value = "0.1";
+				document.getElementById("inputVolatility").value = "0.2";
+				document.getElementById("inputTimeStep").value = "1";
+			} else if (distribution === "geometricBrownian") {
+				// Set default values for Geometric Brownian
+				document.getElementById("inputDrift").value = "4";
+				document.getElementById("inputVolatility").value = "4";
+				document.getElementById("inputTimeStep").value = "0.01";
+			} else if (distribution === "ornsteinUhlenbeck") {
+				// Set default values for Ornstein–Uhlenbeck
+				document.getElementById("inputInitialX").value = "0";
+				document.getElementById("inputTheta").value = "0.1";
+				document.getElementById("inputMu").value = "1";
+				document.getElementById("inputSigma").value = "0.5";
+				document.getElementById("inputTimeStepOU").value = "0.01";
+			} else if (distribution === "vasicek") {
+				// Set default values for Vasicek
+				document.getElementById("inputInitialR").value = "0.05";
+				document.getElementById("inputKappa").value = "0.1";
+				document.getElementById("inputThetaVasicek").value = "0.05";
+				document.getElementById("inputSigmaVasicek").value = "0.1";
+				document.getElementById("inputTimeStepVasicek").value = "0.1";
+			}
+			
+			if (distribution) {
+				// Add event listeners when a distribution is selected
+				document.getElementById("inputDrift").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Drift updated`);
+				});
+
+				document.getElementById("inputVolatility").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Volatility updated`);
+				});
+
+				document.getElementById("inputTimeStep").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Time Step updated`);
+				});
+
+				document.getElementById("inputInitialX").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Initial X updated`);
+				});
+
+				document.getElementById("inputTheta").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Theta updated`);
+				});
+
+				document.getElementById("inputMu").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Mu updated`);
+				});
+
+				document.getElementById("inputSigma").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Sigma updated`);
+				});
+
+				document.getElementById("inputTimeStepOU").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Time Step (OU) updated`);
+				});
+				document.getElementById("inputInitialR").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Initial X updated`);
+				});
+
+				document.getElementById("inputKappa").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Theta updated`);
+				});
+
+				document.getElementById("inputThetaVasicek").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Mu updated`);
+				});
+
+				document.getElementById("inputSigmaVasicek").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Sigma updated`);
+				});
+
+				document.getElementById("inputTimeStepVasicek").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Time Step (OU) updated`);
+				});
+			} else {
+				// Remove event listeners when no distribution is selected
+				document.getElementById("inputDrift").removeEventListener("input", driftListener);
+				document.getElementById("inputVolatility").removeEventListener("input", volatilityListener);
+				document.getElementById("inputTimeStep").removeEventListener("input", timeStepListener);
+
+				// Remove event listeners for Ornstein–Uhlenbeck parameters
+				document.getElementById("inputInitialX").removeEventListener("input", function () {});
+				document.getElementById("inputTheta").removeEventListener("input", function () {});
+				document.getElementById("inputMu").removeEventListener("input", function () {});
+				document.getElementById("inputSigma").removeEventListener("input", function () {});
+				document.getElementById("inputTimeStepOU").removeEventListener("input", function () {});
+				
+				// Remove event listeners for Ornstein–Uhlenbeck parameters
+				document.getElementById("inputInitialR").removeEventListener("input", function () {});
+				document.getElementById("inputKappa").removeEventListener("input", function () {});
+				document.getElementById("inputThetaVasicek").removeEventListener("input", function () {});
+				document.getElementById("inputSigmaVasicek").removeEventListener("input", function () {});
+				document.getElementById("inputTimeStepVasicek").removeEventListener("input", function () {});
+			}
+		}
+
 
         function getLineChartValues(distribution) {
             switch (distribution) {
                 case "arithmeticBrownian":
                     console.log("Arithmetic Brownian selected");
-                    return dataGenerator.getAllValuesArithmeticBrownian();
+                    const aDrift = parseFloat(document.getElementById("inputDrift").value) || 0;
+                    const aVolatility = parseFloat(document.getElementById("inputVolatility").value) || 0;
+                    const aTimeStep = parseFloat(document.getElementById("inputTimeStep").value) || 0;
+                    return dataGenerator.getArithmeticBrownianValues(n, aDrift, aVolatility, aTimeStep);
                 case "geometricBrownian":
                     console.log("Geometric Brownian selected");
-                    return dataGenerator.getAllValuesGeometricBrownian();
+                    const gDrift = parseFloat(document.getElementById("inputDrift").value) || 0;
+                    const gVolatility = parseFloat(document.getElementById("inputVolatility").value) || 0;
+                    const gTimeStep = parseFloat(document.getElementById("inputTimeStep").value) || 0;
+                    return dataGenerator.getGeometricBrownianValues(n, gDrift, gVolatility, gTimeStep);
                 case "ornsteinUhlenbeck":
                     console.log("Ornstein–Uhlenbeck selected");
-                    return dataGenerator.getAllValuesOrnsteinUhlenbeck();
+					const initialX = parseFloat(document.getElementById("inputInitialX").value) || 0;
+                    const theta = parseFloat(document.getElementById("inputTheta").value) || 0;
+                    const mu = parseFloat(document.getElementById("inputMu").value) || 0;
+                    const sigma = parseFloat(document.getElementById("inputSigma").value) || 0;
+                    const timeStep = parseFloat(document.getElementById("inputTimeStepOU").value) || 0;
+                    return dataGenerator.getOrnsteinUhlenbeckValues(n, initialX, theta, mu, sigma, timeStep);
                 case "vasicek":
                     console.log("Vasicek selected");
-                    return dataGenerator.getAllValuesVasicek();
+                    const r0 = parseFloat(document.getElementById("inputInitialR").value) || 0;
+                    const kappa = parseFloat(document.getElementById("inputKappa").value) || 0;
+                    const vTheta = parseFloat(document.getElementById("inputThetaVasicek").value) || 0;
+                    const vSigma = parseFloat(document.getElementById("inputSigmaVasicek").value) || 0;
+                    const vTimeStep = parseFloat(document.getElementById("inputTimeStepVasicek").value) || 0;
+                    return dataGenerator.getVasicekValues(n, r0, kappa, vTheta, vSigma, vTimeStep);	
                 case "hullWhite":
                     console.log("Hull–White selected");
                     return dataGenerator.getAllValuesHullWhite();
@@ -116,25 +318,21 @@
             }
         }
 
-        document.getElementById("inputm").addEventListener("input", function() {
+        document.getElementById("inputm").addEventListener("input", function () {
             m = parseInt(this.value) || 0;
-            dataGenerator = new DataGenerator(m, n);
-            selectedDistribution = document.getElementById("menu").value;
-            lineChartValues = getLineChartValues(selectedDistribution);
-            updateInputValues(lineChartValues);
+			selectedDistribution = document.getElementById("menu").value;
+			updateChanges(selectedDistribution);
             console.log(`m updated: ${m}`);
         });
 
-        document.getElementById("inputn").addEventListener("input", function() {
+        document.getElementById("inputn").addEventListener("input", function () {
             n = parseInt(this.value) || 0;
-            dataGenerator = new DataGenerator(m, n);
-            selectedDistribution = document.getElementById("menu").value;
-            lineChartValues = getLineChartValues(selectedDistribution);
-            updateInputValues(lineChartValues);
+			selectedDistribution = document.getElementById("menu").value;
+			updateChanges(selectedDistribution);
             console.log(`n updated: ${n}`);
         });
 
     </script>
-    
+
 </body>
 </html>
