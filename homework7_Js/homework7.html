@@ -8,25 +8,43 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+			text-align: center;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+			font-size: 20px; 
+        }
+
+        input, select {
+            width: 30%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            margin-right: 10px;
+			text-align: center;
+			font-size: 20px
         }
 
         #canvasContainer {
-            position: relative;
-            margin-top: 20px;
+            text-align: center;
+            margin-top: 40px;
         }
 
-        #pictureBox1 {
-            border: 1px solid #000;
-        }
-
-        label, input, select {
-            margin-bottom: 10px;
+        canvas {
+            border: 3px solid #ddd;
         }
     </style>
 </head>
 <body>
-    <h1>Homework 9</h1>
-    <h2>Indications on how to use...</h2>
+    <h1>Homework 7</h1>
+    <h2>This page is realized to explore some useful stochastic process. Use the menu to select the process and the input fields to change the parameters.</h2>
 
     <label for="inputm">Enter value for M:</label>
     <input type="number" id="inputm" placeholder="Enter M" value="1000" />
@@ -78,8 +96,105 @@
 		<label for="inputTimeStepVasicek">Enter value for Time Step:</label>
 		<input type="number" id="inputTimeStepVasicek" placeholder="Enter Time Step" step="0.1" />
 	</div>
+	
+	<div id="hullWhiteParams" style="display: none;">
+		<label for="inputInitialRHW">Enter value for Initial Short Rate:</label>
+		<input type="number" id="inputInitialRHW" placeholder="Enter Initial Short Rate" step="0.01" />
 
-    <label for="menu">Select a Distribution:</label>
+		<label for="inputMeanReversionSpeed">Enter value for Mean Reversion Speed:</label>
+		<input type="number" id="inputMeanReversionSpeed" placeholder="Enter Mean Reversion Speed" step="0.01" />
+
+		<label for="inputVolatilityHW">Enter value for Volatility:</label>
+		<input type="number" id="inputVolatilityHW" placeholder="Enter Volatility" step="0.01" />
+
+		<label for="inputTimeStepHW">Enter value for Time Step:</label>
+		<input type="number" id="inputTimeStepHW" placeholder="Enter Number of Time Steps" />
+	</div>
+	
+	<div id="cirParams" style="display: none;">
+		<label for="inputCIRInitial">Enter value for Initial Short Rate:</label>
+		<input type="number" id="inputCIRInitial" placeholder="Enter Initial Short Rate" step="0.01" />
+
+		<label for="inputCIRKappa">Enter value for Mean Reversion Speed (kappa):</label>
+		<input type="number" id="inputCIRKappa" placeholder="Enter Mean Reversion Speed (kappa)" step="0.01" />
+
+		<label for="inputCIRTheta">Enter value for Long-Term Mean (theta):</label>
+		<input type="number" id="inputCIRTheta" placeholder="Enter Long-Term Mean (theta)" step="0.01" />
+
+		<label for="inputCIRSigma">Enter value for Volatility (sigma):</label>
+		<input type="number" id="inputCIRSigma" placeholder="Enter Volatility (sigma)" step="0.01" />
+
+		<label for="inputCIRTimeStep">Enter value for Time Step:</label>
+		<input type="number" id="inputCIRTimeStep" placeholder="Enter Time Step" step="0.01" />
+	</div>
+	
+	<div id="blackKarasinskiParams" style="display: none;">
+		<label for="inputInitialRBK">Enter value for Initial R:</label>
+		<input type="number" id="inputInitialRBK" placeholder="Enter Initial R" step="0.01" />
+
+		<label for="inputKappaBK">Enter value for Kappa:</label>
+		<input type="number" id="inputKappaBK" placeholder="Enter Kappa" step="0.01" />
+
+		<label for="inputThetaBK">Enter value for Theta:</label>
+		<input type="number" id="inputThetaBK" placeholder="Enter Theta" step="0.01" />
+
+		<label for="inputSigmaBK">Enter value for Sigma:</label>
+		<input type="number" id="inputSigmaBK" placeholder="Enter Sigma" step="0.01" />
+
+		<label for="inputLambdaBK">Enter value for Lambda:</label>
+		<input type="number" id="inputLambdaBK" placeholder="Enter Lambda" step="0.01" />
+
+		<label for="inputTimeStepBK">Enter value for Time Step (BK):</label>
+		<input type="number" id="inputTimeStepBK" placeholder="Enter Time Step (BK)" step="0.01" />
+	</div>
+
+	<div id="hestonParams" style="display: none;">
+		<label for="inputInitialVH">Enter value for Initial Volatility:</label>
+		<input type="number" id="inputInitialVH" placeholder="Enter Initial Volatility" step="0.01" />
+
+		<label for="inputInitialRhoH">Enter value for Initial Rho:</label>
+		<input type="number" id="inputInitialRhoH" placeholder="Enter Initial Rho" step="0.01" />
+
+		<label for="inputKappaH">Enter value for Kappa:</label>
+		<input type="number" id="inputKappaH" placeholder="Enter Kappa" step="0.01" />
+
+		<label for="inputThetaHeston">Enter value for Theta:</label>
+		<input type="number" id="inputThetaHeston" placeholder="Enter Theta" step="0.01" />
+
+		<label for="inputSigmaHeston">Enter value for Sigma:</label>
+		<input type="number" id="inputSigmaHeston" placeholder="Enter Sigma" step="0.01" />
+
+		<label for="inputV0H">Enter value for V0:</label>
+		<input type="number" id="inputV0H" placeholder="Enter V0" step="0.01" />
+
+		<label for="inputRhoH">Enter value for Rho:</label>
+		<input type="number" id="inputRhoH" placeholder="Enter Rho" step="0.01" />
+
+		<label for="inputXiH">Enter value for Xi:</label>
+		<input type="number" id="inputXiH" placeholder="Enter Xi" step="0.01" />
+
+		<label for="inputTimeStepHeston">Enter value for Time Step:</label>
+		<input type="number" id="inputTimeStepHeston" placeholder="Enter Time Step" step="0.01" />
+	</div>
+	
+	<div id="chenModelParams" style="display: none;">
+		<label for="inputChenModelInitial">Enter value for Initial Short Rate:</label>
+		<input type="number" id="inputChenModelInitial" placeholder="Enter Initial Short Rate" step="0.01" />
+
+		<label for="inputChenModelKappa">Enter value for Kappa:</label>
+		<input type="number" id="inputChenModelKappa" placeholder="Enter Kappa" step="0.01" />
+
+		<label for="inputChenModelTheta">Enter value for Theta:</label>
+		<input type="number" id="inputChenModelTheta" placeholder="Enter Theta" step="0.01" />
+
+		<label for="inputChenModelSigma">Enter value for Sigma:</label>
+		<input type="number" id="inputChenModelSigma" placeholder="Enter Sigma" step="0.01" />
+
+		<label for="inputChenModelTimeStep">Enter value for Number of Time Steps:</label>
+		<input type="number" id="inputChenModelTimeStep" placeholder="Enter Number of Time Steps" step="0.01" />
+	</div>
+
+    <label for="menu">Select a process:</label>
     <select id="menu" onchange="handleSelection()">
         <option value="arithmeticBrownian">Arithmetic Brownian</option>
         <option value="geometricBrownian">Geometric Brownian (Black–Scholes)</option>
@@ -136,11 +251,21 @@
 			const paramsDiv = document.getElementById("arithmeticAndGeometricBrownianParams");
 			const ouParamsDiv = document.getElementById("ornsteinUhlenbeckParams");
 			const vParamsDiv = document.getElementById("vasicekParams");
+			const hwParamsDiv = document.getElementById("hullWhiteParams");
+			const cirParamsDiv = document.getElementById("cirParams");
+			const bkParamsDiv = document.getElementById("blackKarasinskiParams");
+			const hParamsDiv = document.getElementById("hestonParams");
+			const cmParamsDiv = document.getElementById("chenModelParams");
 
 			// Hide all parameter divs
 			paramsDiv.style.display = "none";
 			ouParamsDiv.style.display = "none";
 			vParamsDiv.style.display = "none";
+			hwParamsDiv.style.display = "none";
+			cirParamsDiv.style.display = "none";
+			bkParamsDiv.style.display = "none";
+			hParamsDiv.style.display = "none";
+			cmParamsDiv.style.display = "none";
 
 			if (distribution === "arithmeticBrownian" || distribution === "geometricBrownian") {
 				// Show arithmetic and geometric Brownian parameters
@@ -149,8 +274,23 @@
 				// Show Ornstein–Uhlenbeck parameters
 				ouParamsDiv.style.display = "block";
 			} else if (distribution === "vasicek") {
-				// Show Ornstein–Uhlenbeck parameters
+				// Show Vasicek parameters
 				vParamsDiv.style.display = "block";
+			} else if (distribution === "hullWhite") {
+				// Show Hull White parameters
+				hwParamsDiv.style.display = "block";
+			} else if (distribution === "coxIngersollRoss") {
+				// Show CIR parameters
+				cirParamsDiv.style.display = "block";
+			} else if (distribution === "blackKarasinski") {
+				// Show Black Karasinski parameters
+				bkParamsDiv.style.display = "block";
+			} else if (distribution === "heston") {
+				// Show Heston parameters
+				hParamsDiv.style.display = "block";
+			} else if (distribution === "chenModel") {
+				// Show CHen Model parameters
+				cmParamsDiv.style.display = "block";
 			}
 			
 			if (distribution === "arithmeticBrownian") {
@@ -177,7 +317,46 @@
 				document.getElementById("inputThetaVasicek").value = "0.05";
 				document.getElementById("inputSigmaVasicek").value = "0.1";
 				document.getElementById("inputTimeStepVasicek").value = "0.1";
-			}
+			} else if (distribution === "hullWhite") {
+				// Set default values for Hull White
+				document.getElementById("inputInitialRHW").value = "0.05";
+				document.getElementById("inputMeanReversionSpeed").value = "0.1";
+				document.getElementById("inputVolatilityHW").value = "0.1";
+				document.getElementById("inputTimeStepHW").value = "0.1";
+			} else if (distribution === "coxIngersollRoss") {
+				// Set default values for CIR
+				document.getElementById("inputCIRInitial").value = "0.05";
+				document.getElementById("inputCIRKappa").value = "0.1";
+				document.getElementById("inputCIRTheta").value = "0.05";
+				document.getElementById("inputCIRSigma").value = "0.1";
+				document.getElementById("inputCIRTimeStep").value = "0.1";
+			} else if (distribution === "blackKarasinski") {
+				// Set default values for Black Karasinski
+				document.getElementById("inputInitialRBK").value = "0.05";
+				document.getElementById("inputKappaBK").value = "0.1";
+				document.getElementById("inputThetaBK").value = "0.05";
+				document.getElementById("inputSigmaBK").value = "0.1";
+				document.getElementById("inputLambdaBK").value = "0.1";
+				document.getElementById("inputTimeStepBK").value = "0.1";
+			} else if (distribution === "heston") {
+				// Set default values for Heston
+				document.getElementById("inputInitialVH").value = "0.14";
+				document.getElementById("inputInitialRhoH").value = "-0.7";
+				document.getElementById("inputKappaH").value = "1.5";
+				document.getElementById("inputThetaHeston").value = "0.4";
+				document.getElementById("inputSigmaHeston").value = "0.5";
+				document.getElementById("inputV0H").value = "0.04";
+				document.getElementById("inputRhoH").value = "-0.7";
+				document.getElementById("inputXiH").value = "0.1";
+				document.getElementById("inputTimeStepHeston").value = "0.01";
+			} else if (distribution === "chenModel") {
+				// Set default values for Chen Model
+				document.getElementById("inputChenModelInitial").value = "0.5";
+				document.getElementById("inputChenModelKappa").value = "0.1";
+				document.getElementById("inputChenModelTheta").value = "0.05";
+				document.getElementById("inputChenModelSigma").value = "0.1";
+				document.getElementById("inputChenModelTimeStep").value = "0.1";
+			}								
 			
 			if (distribution) {
 				// Add event listeners when a distribution is selected
@@ -222,27 +401,172 @@
 				});
 				document.getElementById("inputInitialR").addEventListener("input", function () {
 					updateChanges(distribution);
-					console.log(`Initial X updated`);
+					console.log(`Initial R updated`);
 				});
 
 				document.getElementById("inputKappa").addEventListener("input", function () {
 					updateChanges(distribution);
-					console.log(`Theta updated`);
+					console.log(`Kappa updated`);
 				});
 
 				document.getElementById("inputThetaVasicek").addEventListener("input", function () {
 					updateChanges(distribution);
-					console.log(`Mu updated`);
+					console.log(`Theta Vasicek updated`);
 				});
 
 				document.getElementById("inputSigmaVasicek").addEventListener("input", function () {
 					updateChanges(distribution);
-					console.log(`Sigma updated`);
+					console.log(`Sigma Vasicek updated`);
 				});
 
 				document.getElementById("inputTimeStepVasicek").addEventListener("input", function () {
 					updateChanges(distribution);
-					console.log(`Time Step (OU) updated`);
+					console.log(`Time Step (Vasicek) updated`);
+				});
+				
+				document.getElementById("inputInitialRHW").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Initial R (HW) updated`);
+				});
+
+				document.getElementById("inputMeanReversionSpeed").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Mean Reversion Speed updated`);
+				});
+
+				document.getElementById("inputVolatilityHW").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Volatility (HW) updated`);
+				});
+
+				document.getElementById("inputTimeStepHW").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Time Step (HW) updated`);
+				});
+				
+				document.getElementById("inputCIRInitial").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Initial (CIR) updated`);
+				});
+				
+				document.getElementById("inputCIRKappa").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Kappa (CIR) updated`);
+				});
+
+				document.getElementById("inputCIRTheta").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Theta (CIR) updated`);
+				});
+
+				document.getElementById("inputCIRSigma").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Sigma (CIR) updated`);
+				});
+
+				document.getElementById("inputCIRTimeStep").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Time Step (CIR) updated`);
+				});
+				
+				document.getElementById("inputInitialRBK").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Initial (BK) updated`);
+				});
+				
+				document.getElementById("inputKappaBK").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Kappa (BK) updated`);
+				});
+
+				document.getElementById("inputThetaBK").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Theta (BK) updated`);
+				});
+
+				document.getElementById("inputSigmaBK").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Sigma (BK) updated`);
+				});
+
+				document.getElementById("inputLambdaBK").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Lambda (BK) updated`);
+				});
+				
+				document.getElementById("inputTimeStepBK").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Time Step (BK) updated`);
+				});
+				
+				document.getElementById("inputInitialVH").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Initial V (H) updated`);
+				});
+				
+				document.getElementById("inputInitialRhoH").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Initial Rho (H) updated`);
+				});
+
+				document.getElementById("inputKappaH").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Kappa (H) updated`);
+				});
+
+				document.getElementById("inputThetaHeston").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Theta (H) updated`);
+				});
+
+				document.getElementById("inputSigmaHeston").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Sigma (H) updated`);
+				});
+				
+				document.getElementById("inputV0H").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`V0 (H) updated`);
+				});
+				
+				document.getElementById("inputRhoH").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Rho (H) updated`);
+				});
+
+				document.getElementById("inputXiH").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`XiH (H) updated`);
+				});
+				
+				document.getElementById("inputTimeStepHeston").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Time Step (H) updated`);
+				});
+				
+				document.getElementById("inputChenModelInitial").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Input (CM) updated`);
+				});
+				
+				document.getElementById("inputChenModelKappa").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Kappa (CM) updated`);
+				});
+				
+				document.getElementById("inputChenModelTheta").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Theta (CM) updated`);
+				});
+
+				document.getElementById("inputChenModelSigma").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Sigma (CM) updated`);
+				});
+				
+				document.getElementById("inputChenModelTimeStep").addEventListener("input", function () {
+					updateChanges(distribution);
+					console.log(`Time Step (CM) updated`);
 				});
 			} else {
 				// Remove event listeners when no distribution is selected
@@ -257,12 +581,51 @@
 				document.getElementById("inputSigma").removeEventListener("input", function () {});
 				document.getElementById("inputTimeStepOU").removeEventListener("input", function () {});
 				
-				// Remove event listeners for Ornstein–Uhlenbeck parameters
+				// Remove event listeners for Vasicek parameters
 				document.getElementById("inputInitialR").removeEventListener("input", function () {});
 				document.getElementById("inputKappa").removeEventListener("input", function () {});
 				document.getElementById("inputThetaVasicek").removeEventListener("input", function () {});
 				document.getElementById("inputSigmaVasicek").removeEventListener("input", function () {});
 				document.getElementById("inputTimeStepVasicek").removeEventListener("input", function () {});
+				
+				// Remove event listeners for Hull White parameters
+				document.getElementById("inputInitialRHW").removeEventListener("input", function () {});
+				document.getElementById("inputMeanReversionSpeed").removeEventListener("input", function () {});
+				document.getElementById("inputVolatilityHW").removeEventListener("input", function () {});
+				document.getElementById("inputTimeStepHW").removeEventListener("input", function () {});
+				
+				// Remove event listeners for CIR parameters
+				document.getElementById("inputCIRInitial").removeEventListener("input", function () {});
+				document.getElementById("inputCIRKappa").removeEventListener("input", function () {});
+				document.getElementById("inputCIRTheta").removeEventListener("input", function () {});
+				document.getElementById("inputCIRSigma").removeEventListener("input", function () {});
+				document.getElementById("inputCIRTimeStep").removeEventListener("input", function () {});
+				
+				// Remove event listeners for Black Karasinski parameters
+				document.getElementById("inputInitialRBK").removeEventListener("input", function () {});
+				document.getElementById("inputKappaBK").removeEventListener("input", function () {});
+				document.getElementById("inputThetaBK").removeEventListener("input", function () {});
+				document.getElementById("inputSigmaBK").removeEventListener("input", function () {});
+				document.getElementById("inputLambdaBK").removeEventListener("input", function () {});
+				document.getElementById("inputTimeStepBK").removeEventListener("input", function () {});
+				
+				// Remove event listeners for Heston parameters
+				document.getElementById("inputInitialVH").removeEventListener("input", function () {});
+				document.getElementById("inputInitialRhoH").removeEventListener("input", function () {});
+				document.getElementById("inputKappaH").removeEventListener("input", function () {});
+				document.getElementById("inputThetaHeston").removeEventListener("input", function () {});
+				document.getElementById("inputSigmaHeston").removeEventListener("input", function () {});
+				document.getElementById("inputV0H").removeEventListener("input", function () {});
+				document.getElementById("inputRhoH").removeEventListener("input", function () {});
+				document.getElementById("inputXiH").removeEventListener("input", function () {});
+				document.getElementById("inputTimeStepHeston").removeEventListener("input", function () {});
+				
+				// Remove event listeners for Chem model parameters
+				document.getElementById("inputChenModelInitial").removeEventListener("input", function () {});
+				document.getElementById("inputChenModelKappa").removeEventListener("input", function () {});
+				document.getElementById("inputChenModelTheta").removeEventListener("input", function () {});
+				document.getElementById("inputChenModelSigma").removeEventListener("input", function () {});
+				document.getElementById("inputChenModelTimeStep").removeEventListener("input", function () {});
 			}
 		}
 
@@ -299,19 +662,49 @@
                     return dataGenerator.getVasicekValues(n, r0, kappa, vTheta, vSigma, vTimeStep);	
                 case "hullWhite":
                     console.log("Hull–White selected");
-                    return dataGenerator.getAllValuesHullWhite();
+					const initialR = parseFloat(document.getElementById("inputInitialRHW").value) || 0;
+					const linearThetaFunction = t => 0.05 + 0.01 * t;
+                    const meanReversionSpeed = parseFloat(document.getElementById("inputMeanReversionSpeed").value) || 0;
+                    const volatility = parseFloat(document.getElementById("inputVolatilityHW").value) || 0;
+                    const hwTimeStep = parseFloat(document.getElementById("inputTimeStepHW").value) || 0;
+                    return dataGenerator.getHullWhiteValues(n, initialR, linearThetaFunction, meanReversionSpeed, volatility, hwTimeStep);
                 case "coxIngersollRoss":
                     console.log("Cox–Ingersoll–Ross");
-                    return dataGenerator.getAllValuesCIR();
+					const r0CIR = parseFloat(document.getElementById("inputCIRInitial").value) || 0;
+                    const kappaCIR = parseFloat(document.getElementById("inputCIRKappa").value) || 0;
+                    const thetaCIR = parseFloat(document.getElementById("inputCIRTheta").value) || 0;
+                    const sigmaCIR = parseFloat(document.getElementById("inputCIRSigma").value) || 0;
+                    const timeStepCIR = parseFloat(document.getElementById("inputCIRTimeStep").value) || 0;
+                    return dataGenerator.getCIRValues(n, r0CIR, kappaCIR, thetaCIR, sigmaCIR, timeStepCIR);
                 case "blackKarasinski":
                     console.log("Black–Karasinski selected");
-                    return dataGenerator.getAllValuesBlackKarasinski();
+					const r0BK = parseFloat(document.getElementById("inputInitialRBK").value) || 0;
+                    const kappaBK = parseFloat(document.getElementById("inputKappaBK").value) || 0;
+                    const thetaBK = parseFloat(document.getElementById("inputThetaBK").value) || 0;
+                    const sigmaBK = parseFloat(document.getElementById("inputSigmaBK").value) || 0;
+                    const lambdaBK = parseFloat(document.getElementById("inputLambdaBK").value) || 0;
+                    const timeStepBK = parseFloat(document.getElementById("inputTimeStepBK").value) || 0;
+                    return dataGenerator.getBlackKarasinskiValues(n, r0BK, kappaBK, thetaBK, sigmaBK, lambdaBK, timeStepBK);
                 case "heston":
                     console.log("Heston selected");
-                    return dataGenerator.getAllValuesHeston();
+					const initialV = parseFloat(document.getElementById("inputInitialVH").value) || 0;
+                    const initialRho = parseFloat(document.getElementById("inputInitialRhoH").value) || 0;
+                    const kappaH = parseFloat(document.getElementById("inputKappaH").value) || 0;
+                    const thetaH = parseFloat(document.getElementById("inputThetaHeston").value) || 0;
+                    const sigmaH = parseFloat(document.getElementById("inputSigmaHeston").value) || 0;
+                    const v0 = parseFloat(document.getElementById("inputV0H").value) || 0;
+                    const rho = parseFloat(document.getElementById("inputRhoH").value) || 0;
+                    const xi = parseFloat(document.getElementById("inputXiH").value) || 0;
+                    const timeStepH = parseFloat(document.getElementById("inputTimeStepHeston").value) || 0;
+                    return dataGenerator.getHestonValues(n, initialV, initialRho, kappaH, thetaH, sigmaH, v0, rho, xi, timeStepH);					
                 case "chenModel":
                     console.log("Chen model selected");
-                    return dataGenerator.getAllValuesChenModel();
+					const r0CM = parseFloat(document.getElementById("inputChenModelInitial").value) || 0;
+                    const kappaCM = parseFloat(document.getElementById("inputChenModelKappa").value) || 0;
+                    const thetaCM = parseFloat(document.getElementById("inputChenModelTheta").value) || 0;
+                    const sigmaCM = parseFloat(document.getElementById("inputChenModelSigma").value) || 0;
+                    const timeStepCM = parseFloat(document.getElementById("inputChenModelTimeStep").value) || 0;
+                    return dataGenerator.getChenModelValues(n, r0CM, kappaCM, thetaCM, sigmaCM, timeStepCM);				
                 default:
                     console.log("Unknown distribution selected");
                     return [];
