@@ -213,6 +213,8 @@
 
     <script src="./DataGenerator.js"></script>
     <script src="./LineChart.js"></script>
+	
+	<script src="./LineChartV1.js"></script>
 
     <script>
         let m = 1000;
@@ -226,9 +228,12 @@
         dataGenerator = new DataGenerator(m, n);
 
         // Genera grafico
-        chart1 = new LineChart(document.getElementById('pictureBox1'));
-        handleSelection();
+        //chart1 = new LineChart(document.getElementById('pictureBox1'));
+        //handleSelection();
         
+		//NEW
+		chart1 = new LineChartV1(document.getElementById('pictureBox1'));
+        handleSelection();
 
         function updateInputValues(data) {
             chart1.drawChart(data);
