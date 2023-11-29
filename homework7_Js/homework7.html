@@ -224,14 +224,10 @@
         let chart1;
         let lineChartValues;
 
-        // Genera i dati
+        // Generate data
         dataGenerator = new DataGenerator(m, n);
 
-        // Genera grafico
-        //chart1 = new LineChart(document.getElementById('pictureBox1'));
-        //handleSelection();
-        
-		//NEW
+        // Generate chart
 		chart1 = new LineChartV1(document.getElementById('pictureBox1'));
         handleSelection();
 
@@ -317,30 +313,30 @@
 				document.getElementById("inputTimeStepOU").value = "0.01";
 			} else if (distribution === "vasicek") {
 				// Set default values for Vasicek
-				document.getElementById("inputInitialR").value = "0.05";
-				document.getElementById("inputKappa").value = "0.1";
+				document.getElementById("inputInitialR").value = "0.2";
+				document.getElementById("inputKappa").value = "0.3";
 				document.getElementById("inputThetaVasicek").value = "0.05";
 				document.getElementById("inputSigmaVasicek").value = "0.1";
-				document.getElementById("inputTimeStepVasicek").value = "0.1";
+				document.getElementById("inputTimeStepVasicek").value = "0.3";
 			} else if (distribution === "hullWhite") {
 				// Set default values for Hull White
-				document.getElementById("inputInitialRHW").value = "0.05";
-				document.getElementById("inputMeanReversionSpeed").value = "0.1";
+				document.getElementById("inputInitialRHW").value = "0.5";
+				document.getElementById("inputMeanReversionSpeed").value = "0.3";
 				document.getElementById("inputVolatilityHW").value = "0.1";
-				document.getElementById("inputTimeStepHW").value = "0.1";
+				document.getElementById("inputTimeStepHW").value = "0.21";
 			} else if (distribution === "coxIngersollRoss") {
 				// Set default values for CIR
 				document.getElementById("inputCIRInitial").value = "0.05";
-				document.getElementById("inputCIRKappa").value = "0.1";
+				document.getElementById("inputCIRKappa").value = "0.91";
 				document.getElementById("inputCIRTheta").value = "0.05";
-				document.getElementById("inputCIRSigma").value = "0.1";
-				document.getElementById("inputCIRTimeStep").value = "0.1";
+				document.getElementById("inputCIRSigma").value = "0.41";
+				document.getElementById("inputCIRTimeStep").value = "0.11";
 			} else if (distribution === "blackKarasinski") {
 				// Set default values for Black Karasinski
 				document.getElementById("inputInitialRBK").value = "0.05";
-				document.getElementById("inputKappaBK").value = "0.1";
-				document.getElementById("inputThetaBK").value = "0.05";
-				document.getElementById("inputSigmaBK").value = "0.1";
+				document.getElementById("inputKappaBK").value = "0.61";
+				document.getElementById("inputThetaBK").value = "0.01";
+				document.getElementById("inputSigmaBK").value = "0.51";
 				document.getElementById("inputLambdaBK").value = "0.1";
 				document.getElementById("inputTimeStepBK").value = "0.1";
 			} else if (distribution === "heston") {
